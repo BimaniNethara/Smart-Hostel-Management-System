@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Hostel Admin</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-text">
+                <h3>Admin Panel</h3>
+                <p>Smart Hostel</p>
+            </div>
+        </div>
+
+        <ul class="menu">
+            <li class="active"><a href="admindashboard.html"><i class="fas fa-th"></i>Dashboard</a></li>
+            <li><a href="adminattendace.html"><i class="fas fa-fingerprint"></i>Smart Attendance</a></li>
+            <li><a href="enrollfingerprint.html"><i class="fas fa-fingerprint"></i> Enroll Student Fingerprint</a></li>
+            <li><a href="adminroom.html"><i class="fas fa-bed"></i>Room Management</a></li>
+            <li><a href="adminstudentmanagment.html"><i class="fas fa-user-graduate"></i>Student</a></li>
+            <li><a href="adminreports.html"><i class="fas fa-chart-bar"></i>Reports</a></li>
+            <li><a href="admininvite.html"><i class="fas fa-th"></i>Invitation</a></li>
+            <li><a href="adminaccount.html"><i class="fas fa-user"></i>Account</a></li>
+           
+        </ul>
+
+        <!--  Logout Button with ID -->
+        <div class="logout">
+            <a href="loggedout.html" id="logoutBtn"><i class="fas fa-sign-out-alt"></i>Logout</a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+        <div class="main-header">
+            <h1>Dashboard</h1>
+            <p>Welcome back! Here's what's happening at your hostel today.</p>
+        </div>
+
+        <!-- Top Cards -->
+        <div class="top-cards">
+            <div class="card card-id">
+                <div class="card-body">
+                    <span>Total Students</span>
+                    <h3 id="totalStudents">0</h3>
+                </div>
+                <div class="card-icon blue"><i class="fas fa-user-graduate"></i></div>
+            </div>
+
+            <div class="card card-room">
+                <div class="card-body">
+                    <span>Rooms Available</span>
+                    <h3 id="roomsAvailable">0</h3>
+                </div>
+                <div class="card-icon purple"><i class="fas fa-bed"></i></div>
+            </div>
+
+            <div class="card card-status">
+                <div class="card-body">
+                    <span>Attendance</span>
+                    <h3 id="attendance">0%</h3>
+                </div>
+                <div class="card-icon teal"><i class="fas fa-fingerprint"></i></div>
+            </div>
+        </div>
+
+        <!-- Weekly Attendance Chart -->
+        <div class="section-box">
+            <div class="section-header">
+                <h4>Weekly Attendance</h4>
+                <a href="#" class="btn-light-blue">View Details</a>
+            </div>
+
+            <canvas id="attendanceChart" height="120"></canvas>
+        </div>
+
+    </main>
+</div>
+
+<!-- External JS -->
+<script type="module"   src="admin.js"></script>
+<script src="logout.js"></script>
+</body>
+</html>
