@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Room Management | Smart Hostel Admin</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-text">
+        <h3>Admin Panel</h3>
+        <p>Smart Hostel</p>
+      </div>
+    </div>
+
+    <!-- Navigation Menu -->
+    <ul class="menu">
+      <li><a href="admindashboard.html"><i class="fas fa-th"></i>Dashboard</a></li>
+      <li><a href="adminattendace.html"><i class="fas fa-fingerprint"></i>Smart Attendance</a></li>
+                  <li><a href="enrollfingerprint.html"><i class="fas fa-fingerprint"></i> Enroll Student Fingerprint</a></li>
+
+      <li class="active"><a href="adminroom.html"><i class="fas fa-bed"></i>Room Management</a></li>
+      <li><a href="adminstudentmanagment.html"><i class="fas fa-user-graduate"></i>Student</a></li>
+      <li><a href="adminreports.html"><i class="fas fa-chart-bar"></i>Reports</a></li>
+      <li><a href="admininvite.html"><i class="fas fa-th"></i>Invitation</a></li>
+      <li><a href="adminaccount.html"><i class="fas fa-user"></i>Account</a></li>
+    </ul>
+
+    <div class="logout">
+      <a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="content">
+    <div class="main-header">
+      <h1>Room Management</h1>
+      <p>Manage hostel rooms, assignments, and availability</p>
+    </div>
+
+    <!-- Room Summary -->
+    <div class="room-summary">
+      <div class="summary-card summary-yellow">
+        <div>
+          <span>Total Rooms</span>
+          <h3>0</h3>
+        </div>
+        <div class="icon"><i class="fas fa-circle"></i></div>
+      </div>
+
+      <div class="summary-card summary-purple">
+        <div>
+          <span>Occupied</span>
+          <h3>0</h3>
+        </div>
+        <div class="icon"><i class="fas fa-user"></i></div>
+      </div>
+
+      <div class="summary-card summary-blue">
+        <div>
+          <span>Available Rooms</span>
+          <h3>0</h3>
+        </div>
+        <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+      </div>
+    </div>
+
+    <!-- Filters -->
+    <div class="filter-bar">
+      <select>
+        <option>All Block</option>
+        <option>Block A</option>
+        <option>Block B</option>
+      </select>
+
+      <select>
+        <option>All Status</option>
+        <option>Occupied</option>
+        <option>Available</option>
+      </select>
+
+      <select>
+        <option>All Type</option>
+        <option>Single</option>
+        <option>Double</option>
+      </select>
+
+      <input type="search" placeholder="Search Room">
+    </div>
+
+    <!-- Room Table -->
+    <table class="table-room">
+      <thead>
+        <tr>
+          <th>Rooms</th>
+          <th>Type</th>
+          <th>Occupancy</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Room 101</td>
+          <td>Single</td>
+          <td>1/1</td>
+          <td><span class="status occupied">Occupied</span></td>
+          <td>
+            <div class="actions">
+              <i class="fas fa-eye"></i>
+              <i class="fas fa-edit"></i>
+              <i class="fas fa-trash"></i>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 102</td>
+          <td>Double</td>
+          <td>2/2</td>
+          <td><span class="status occupied">Occupied</span></td>
+          <td>
+            <div class="actions">
+              <i class="fas fa-eye"></i>
+              <i class="fas fa-edit"></i>
+              <i class="fas fa-trash"></i>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 103</td>
+          <td>Double</td>
+          <td>1/2</td>
+          <td><span class="status partial">Partially Occupied</span></td>
+          <td>
+            <div class="actions">
+              <i class="fas fa-eye"></i>
+              <i class="fas fa-edit"></i>
+              <i class="fas fa-trash"></i>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Room 104</td>
+          <td>Double</td>
+          <td>1/2</td>
+          <td><span class="status occupied">Occupied</span></td>
+          <td>
+            <div class="actions">
+              <i class="fas fa-eye"></i>
+              <i class="fas fa-edit"></i>
+              <i class="fas fa-trash"></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </main>
+</div>
+
+</body>
+</html>

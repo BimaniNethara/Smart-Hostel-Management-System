@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Account - Smart Hostel Admin</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-text">
+          <h3>Admin Panel</h3>
+          <p>Smart Hostel</p>
+        </div>
+      </div>
+
+      <ul class="menu">
+        <li><a href="admindashboard.html"><i class="fas fa-th"></i>Dashboard</a></li>
+        <li><a href="adminattendace.html"><i class="fas fa-fingerprint"></i>Smart Attendance</a></li>
+        <li><a href="enrollfingerprint.html"><i class="fas fa-fingerprint"></i> Enroll Student Fingerprint</a></li>
+        <li><a href="adminroom.html"><i class="fas fa-bed"></i>Room Management</a></li>
+        <li><a href="adminstudentmanagment.html"><i class="fas fa-user-graduate"></i>Student</a></li>
+        <li><a href="adminreports.html"><i class="fas fa-chart-bar"></i>Reports</a></li>
+        <li><a href="admininvite.html"><i class="fas fa-th"></i>Invitation</a></li>
+        <li class="active"><a href="adminaccount.html"><i class="fas fa-user"></i>Account</a></li>
+
+      </ul>
+
+      <div class="logout">
+        <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i>Logout</a>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="content">
+      <div class="main-header">
+        <h1>My Profile</h1>
+        <p>Manage your profile information</p>
+      </div>
+
+      <!-- Profile Layout -->
+      <div class="profile-layout" style="display: grid; grid-template-columns: 1fr 2fr; gap: 25px;">
+
+        <!-- Profile Card -->
+        <div class="profile-card"
+          style="background:#fff; border-radius:10px; padding:25px; box-shadow:0 3px 10px rgba(0,0,0,0.05); text-align:center;">
+          <div class="profile-photo">
+            <div class="avatar" id="profileImageContainer">
+              <i class="fas fa-user-circle" id="defaultIcon"></i>
+              <img id="profilePreview" src="" alt="Profile" style="display:none;">
+            </div>
+          </div>
+
+          <h2 id="adminName" style="font-size:18px; margin-top:10px;">Loading...</h2>
+          <p id="adminRole" class="role" style="color:#777; margin-bottom:10px;"></p>
+
+
+          <!-- Hidden input for file -->
+          <input type="file" id="uploadPhoto" accept="image/*" style="display:none;">
+          <button class="btn-change" id="changePhotoBtn"
+            style="background:#e5e7eb; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; font-weight:500;">Change
+            Photo</button>
+
+          <div class="profile-meta" style="margin-top:20px; font-size:13px; color:#555; text-align:left;">
+            <p class="verified" style="color:#16a34a;"><i class="fas fa-check-circle"></i> Verified account</p>
+            <p><i class="fas fa-calendar"></i> Joined 1/15/2020</p>
+            <p>WRD-2024-001</p>
+          </div>
+        </div>
+
+        <!-- Personal Information -->
+        <div class="profile-info"
+          style="background:#fff; border-radius:10px; padding:25px; box-shadow:0 3px 10px rgba(0,0,0,0.05);">
+          <h3 style="margin-bottom:15px;">Personal Information</h3>
+
+          <div class="info-grid" style="display:grid; grid-template-columns: repeat(2, 1fr); gap:15px;">
+            <div class="info-item">
+              <label>Full Name</label>
+              <input type="text" id="fullName" readonly>
+            </div>
+
+            <div class="info-item">
+              <label>Employee ID</label>
+              <input type="text" id="empId" readonly>
+            </div>
+
+            <div class="info-item">
+              <label>Email Address</label>
+              <input type="text" id="email" readonly>
+            </div>
+
+            <!--div class="info-item">
+            <label>Phone Number</label>
+           <input type="text" id="phone" readonly>
+          </div>
+
+          <div class="info-item">
+            <label>Department</label>
+            <input type="text" value="Hostel Administration" readonly>
+          </div>
+
+          <div class="info-item">
+            <label>Qualification</label>
+            <input type="text" value="BSc in Computer Science" readonly>
+          </div-->
+
+            <div class="info-item" style="grid-column: span 2;">
+              <label>Address</label>
+              <input type="text" id="address" readonly>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- External JS -->
+  <script src="logout.js"></script>
+  <script src="adminaccount.js"></script>
+</body>
+
+</html>

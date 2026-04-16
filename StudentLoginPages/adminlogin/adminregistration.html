@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin Registration</title>
+
+  <link rel="stylesheet" href="adminregistration.css" />
+  <!-- main script (module so we can import firebase.js) -->
+  <script type="module" src="adminregistration.js" defer></script>
+</head>
+<body>
+  <main class="page">
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+            <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#2b6cb0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 21v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1" stroke="#2b6cb0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h1>Admin Registration</h1>
+        <p class="subtitle">University of Ruhuna</p>
+      </div>
+
+      <div class="progress">
+        <div class="step-item">
+          <div class="step-num active" data-step="1">1</div>
+          <div class="step-label">Personal</div>
+        </div>
+        <div class="progress-line"></div>
+        <div class="step-item">
+          <div class="step-num" data-step="2">2</div>
+          <div class="step-label">User</div>
+        </div>
+        <div class="progress-line"></div>
+        <div class="step-item">
+          <div class="step-num" data-step="3">3</div>
+          <div class="step-label">Confirm</div>
+        </div>
+      </div>
+
+      <!-- STEP PANELS -->
+      <section id="step-1" class="panel active">
+        <h2 class="section-title">Personal Details</h2>
+
+        <label class="field">
+          <span>Full Name</span>
+          <input id="fullName" type="text" placeholder="Full name" />
+        </label>
+
+        <label class="field">
+          <span>Employee ID</span>
+          <input id="empId" type="text" placeholder="Employee ID" />
+        </label>
+
+        <label class="field two-col">
+          <div>
+            <span>Date of Birth</span>
+            <input id="dob" type="date" />
+          </div>
+          <div>
+            <span>Gender</span>
+            <select id="gender">
+              <option value="">Select</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </label>
+
+        <label class="field">
+          <span>Email</span>
+          <input id="email" type="email" placeholder="you@example.com" />
+        </label>
+
+        <label class="field">
+          <span>Phone</span>
+          <input id="phone" type="text" placeholder="07xxxxxxxx" />
+        </label>
+
+        <label class="field">
+          <span>Address</span>
+          <input id="address" type="text" placeholder="Address" />
+        </label>
+
+        <label class="field file-field">
+          <span>Profile Image</span>
+          <div class="file-row">
+            <input id="profileImage" type="file" accept="image/*" />
+            <div id="previewWrap" class="preview-wrap">
+            <img id="previewImg" alt="Profile preview" />
+            </div>
+
+          </div>
+        </label>
+
+        <div class="actions">
+          <button id="toStep2" class="btn primary">Next</button>
+        </div>
+      </section>
+
+      <section id="step-2" class="panel">
+        <h2 class="section-title">User Account</h2>
+
+        <label class="field">
+          <span>Username</span>
+          <input id="username" type="text" placeholder="username" />
+        </label>
+
+        <label class="field">
+          <span>Password</span>
+          <input id="password" type="password" placeholder="password" />
+        </label>
+
+        <div class="actions">
+          <button id="backTo1" class="btn ghost">Back</button>
+          <button id="toStep3" class="btn primary">Next</button>
+        </div>
+      </section>
+
+      <section id="step-3" class="panel">
+        <h2 class="section-title">Confirm Details</h2>
+
+        <div class="confirm-grid">
+          <div><strong>Full Name</strong><div id="cFullName"></div></div>
+          <div><strong>Employee ID</strong><div id="cEmpId"></div></div>
+          <div><strong>DOB</strong><div id="cDob"></div></div>
+          <div><strong>Gender</strong><div id="cGender"></div></div>
+          <div><strong>Email</strong><div id="cEmail"></div></div>
+          <div><strong>Phone</strong><div id="cPhone"></div></div>
+          <div><strong>Address</strong><div id="cAddress"></div></div>
+          <div><strong>Username</strong><div id="cUsername"></div></div>
+          <div class="profile-preview"><strong>Profile Image</strong><div><img id="cImage" alt="profile" /></div></div>
+        </div>
+
+        <div class="actions">
+          <button id="backTo2" class="btn ghost">Back</button>
+          <button id="finishBtn" class="btn primary">Finish & Submit</button>
+          <button id="gotoLogin" class="btn secondary">Go to Login</button>
+        </div>
+
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>
