@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Checkout Successful</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="checkin_success.css">
+
+    <script type="module" src="checkout_success.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="checkin-container">
+
+        <h1>Fingerprint Attendance System</h1>
+        <p>Secure biometric attendance marking for hostel management</p>
+
+        <div class="checkin-card">
+
+            <div class="checkin-header">
+
+                <img src="../Image_asserts/check.png" alt="success">
+
+                <h1>Checkout Successful!</h1>
+                <p>Student Identified Successfully</p>
+
+            </div>
+
+
+            <div class="student-container">
+
+                <p>Student Details</p>
+
+                <div class="student-content">
+
+                    <img src="../Image_asserts/profile_pic.png" id="profile-pic" alt="Profile">
+
+                    <div class="student-details">
+
+                        <div class="student-detail1">
+
+                            <p id="full-name"><strong>Full Name</strong> -</p>
+
+                            <p id="room-number"><strong>Room Number</strong> -</p>
+
+                            <p id="year"><strong>Year</strong> -</p>
+
+                        </div>
+
+                        <div class="student-detail2">
+
+                            <p id="student-id"><strong>Student ID</strong> -</p>
+
+                            <p id="floor"><strong>Floor</strong> -</p>
+
+                            <p id="faculty"><strong>Faculty</strong> -</p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timestamp">
+
+                    <span id="date-span"></span>
+                    <span id="time-span"></span>
+
+                </div>
+
+            </div>
+
+
+            <!-- reason dropdown -->
+
+            <div class="reason-container">
+
+                <form class="reason-form">
+
+                    <label for="reason"><strong>Select a reason:</strong></label>
+
+                    <select id="reason">
+
+                        <option value="Lectures">Lectures</option>
+                        <option value="Personal">Personal</option>
+                        <option value="Home">Home</option>
+                        <option value="Event">Event</option>
+
+                    </select>
+
+                    <br><br>
+
+                    <input class="submit" type="submit" value="Submit reason">
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

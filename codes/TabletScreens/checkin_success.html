@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Check-in successful</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='checkin_success.css'>
+    <script type="module" src='checkin-success.js'></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="checkin-container">
+
+        <!--title and subtitile-->
+        <h1>Fingerprint Attendance System</h1>
+        <p>Secure biometric attendance marking for hostel management</p>
+
+        <div class="checkin-card">
+
+            <!--checkout sucessful image and text-->
+            <div class="checkin-header">
+                <img src="../Image_asserts/check.png" >
+                <h1>Check-in Successful !</h1>
+                <p>Student Identified Successfully</p>
+            </div>
+
+            <!-- Student details -->
+            <div class="student-container">
+                <p>Student Details</p>
+
+                <div class="student-content">
+                    <img src="../Image_asserts/profile_pic.png " alt="Profile picture"  id="profile-pic">
+
+
+                    <div class="student-details">
+                        <div class="student-detail1">
+                            <p id="full-name"><strong>Full Name</strong>-------------</p>
+                            <p id="room-number"><strong>Room Number</strong>-------------</p>
+                            <p id="year"><strong>Year</strong>-------------</p>
+                        </div>
+                        <div class="student-detail2">
+                            <p id="student-id"><strong>Student ID</strong>-------------</p>
+                            <p id="floor"><strong>Floor</strong>-------------</p>
+                            <p id="faculty"><strong>Faculty</strong>-------------</p>
+                        </div>
+                    </div>
+                </div>
+                 <!--checkin time and date-->
+            <div class="timestamp">
+                <span id="date-span">Saturday, November 29, 2025</span>
+                <span id="time-span">6.00 A.M</span>
+            </div>
+            </div>
+           
+        </div>
+    </div>
+</body>
+
+</html>

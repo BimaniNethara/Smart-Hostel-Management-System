@@ -1,0 +1,65 @@
+* {
+  margin: 0%;
+  padding: 0%;
+}
+html,body{
+    overscroll-behavior: none; /* to remove bouncy when scrol*/
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #F7F7F7;
+  padding: 20px;
+}
+.card{
+    display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  width: 600px;
+  height: auto;
+  padding: 50px 100px;
+  border: solid 1px;
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px rgba(0,0,0,0.10);
+  border-color: #D9D9D9;
+  border-radius: 50px;
+  text-align: center;
+}
+.checkin-container h1, .checkout-container p {
+  text-align: center;
+  padding: 10px;
+}
+
+.checkin-container h1 {
+  color: #0034D1;
+}
+
+.checkin-unsuccesful-card h1, .checkout-unsuccesful-card p {
+  text-align: center;
+  padding: 10px;
+}
+
+.checkin-unsuccesful-card h1 {
+  color: #0034D1;
+}
+
+.checkin-unsuccesful-card img {
+  padding: 30px;
+  width: 150px;
+  height: 150px;
+}
+
+.checkin-unsuccesful-card h1 {
+  color: #DF4A44;
+}
+
+.checkin-unsuccesful-card p {
+  color: black;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
