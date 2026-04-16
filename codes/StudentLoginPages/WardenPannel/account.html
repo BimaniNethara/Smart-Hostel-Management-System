@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account - Smart Hostel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- SHARED CSS --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { display: flex; background-color: #f4f7f6; min-height: 100vh; }
+        .sidebar { width: 260px; background-color: #1a222d; color: white; display: flex; flex-direction: column; position: fixed; height: 100vh; }
+        .brand { padding: 25px; display: flex; align-items: center; gap: 15px; border-bottom: 1px solid #2d3748; }
+        .brand img { width: 45px; height: 45px; border-radius: 50%; border: 2px solid #12b48d; object-fit: cover; }
+        .brand-text h3 { font-size: 16px; font-weight: 600; }
+        .brand-text p { font-size: 11px; color: #888; }
+        .nav-links { list-style: none; padding: 20px 15px; flex-grow: 1; }
+        .nav-links li { margin-bottom: 8px; }
+        .nav-links a { color: #a0aec0; text-decoration: none; display: flex; align-items: center; padding: 12px 15px; border-radius: 8px; font-size: 14px; gap: 12px; transition: 0.3s; }
+        .nav-links a:hover { background-color: rgba(18, 180, 141, 0.1); color: #12b48d; }
+        .nav-links li.active a { background-color: #12b48d; color: white; }
+        .logout { padding: 25px; border-top: 1px solid #2d3748; }
+        .logout a { color: #a0aec0; text-decoration: none; display: flex; align-items: center; gap: 10px; font-size: 14px; cursor: pointer;}
+        .main-content { flex: 1; margin-left: 260px; padding: 35px; }
+        header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .header-title h1 { font-size: 24px; color: #111; }
+        .header-title p { color: #888; font-size: 14px; margin-top: 5px; }
+        .btn-export { background: #12b48d; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; gap: 8px; font-weight: 500; transition: 0.3s; }
+        .account-grid { display: grid; grid-template-columns: 320px 1fr; gap: 25px; margin-top: 20px; }
+        .card { background: white; border-radius: 12px; padding: 25px; border: 1px solid #e0e0e0; }
+        .profile-side { text-align: center; }
+        .circle-icon { width: 120px; height: 120px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 15px; font-size: 35px; overflow: hidden; border: 4px solid #12b48d; }
+        .circle-icon img { width: 100%; height: 100%; object-fit: cover; }
+        .green-bg { background: #e0f7f3; color: #12b48d; }
+        .blue-bg { background: #e0f2fe; color: #0ea5e9; }
+        .v-list { text-align: left; border-top: 1px solid #f0f0f0; padding-top: 20px; }
+        .v-item { display: flex; align-items: center; gap: 12px; font-size: 13px; color: #555; margin-bottom: 12px; }
+        .v-item i { color: #12b48d; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-size: 12px; font-weight: 600; color: #666; text-transform: uppercase; }
+        .form-group input { padding: 11px; border: 1px solid #ddd; border-radius: 8px; background: #fcfcfc; font-size: 14px; color: #444; transition: 0.3s; }
+        .form-group input.editing { border-color: #12b48d; background-color: white; outline: none; box-shadow: 0 0 5px rgba(18, 180, 141, 0.2); }
+        .form-group input.locked { background-color: #e9ecef; cursor: not-allowed; color: #6c757d; }
+        .full-width { grid-column: span 2; }
+        .table-container { margin-top: 25px; background: white; border-radius: 12px; border: 1px solid #e0e0e0; padding: 25px; }
+        .sec-row { display: flex; justify-content: space-between; align-items: center; background: #f9fafb; padding: 15px 20px; border-radius: 10px; margin-top: 15px; }
+        .sec-info { display: flex; align-items: center; gap: 15px; }
+        .small-circle { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .sec-text h4 { font-size: 14px; color: #333; }
+        .sec-text p { font-size: 12px; color: #888; }
+        .btn-sec { background: #cfdcf7; color: #5c7fdb; border: none; padding: 7px 18px; border-radius: 20px; font-weight: 600; font-size: 12px; cursor: pointer; transition: 0.3s; }
+        .btn-sec:hover { opacity: 0.8; }
+        
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 30px; border-radius: 12px; width: 400px; box-shadow: 0 10px 25px rgba(0,0,0,0.2); position: relative; }
+        .modal-header { margin-bottom: 20px; }
+        .modal-header h2 { font-size: 18px; color: #1a222d; }
+        .close-btn { position: absolute; right: 20px; top: 20px; cursor: pointer; font-size: 20px; color: #888; }
+        .confirm-btn { width: 100%; background: #12b48d; color: white; border: none; padding: 12px; border-radius: 8px; margin-top: 20px; cursor: pointer; font-weight: 600; transition: 0.3s;}
+        
+        /* Debug Box */
+        #debug-status {
+            background: #fff3cd; color: #856404; padding: 10px; margin-bottom: 20px;
+            border-radius: 8px; font-size: 13px; display: none; border: 1px solid #ffeeba;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="brand">
+            <img src="images/default.jpg" alt="Profile" id="sidebarProfileImg">
+            <div class="brand-text"><h3>Warden Panel</h3><p>Smart Hostel</p></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="wardenmain.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="view_student.html"><i class="fas fa-users"></i> View Student</a></li>
+            <li><a href="attendance.html"><i class="fas fa-clipboard-check"></i> Attendance</a></li>
+            <li><a href="room_allocation.html"><i class="fas fa-door-open"></i> Room Allocation</a></li>
+            <li class="active"><a href="account.html"><i class="fas fa-user"></i> Account</a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Setting</a></li>
+        </ul>
+        <div class="logout"><a id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+    </div>
+
+    <div class="main-content">
+        <div id="debug-status">Initializing...</div>
+
+        <header>
+            <div class="header-title">
+                <h1>My Account</h1>
+                <p>Manage your profile information</p>
+            </div>
+            <button class="btn-export" id="editBtn">
+                <i class="far fa-edit"></i> <span id="btnText">Edit Profile</span>
+            </button>
+        </header>
+
+        <div class="account-grid">
+            <div class="card profile-side">
+                <div class="circle-icon green-bg">
+                    <img id="mainProfileImg" src="images/default.jpg" alt="User">
+                </div>
+                <h2 id="display-name">Loading...</h2>
+                <p class="role" id="display-role">Warden</p>
+                <div class="v-list">
+                    <div class="v-item"><i class="fas fa-check-circle"></i> Verified Account</div>
+                    <div class="v-item"><i class="fas fa-id-badge"></i> <span id="display-empId">---</span></div>
+                    <div class="v-item"><i class="fas fa-home"></i> <span id="display-hostel">---</span></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="margin-bottom: 20px; font-size: 17px;">Personal Information</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="accFullName" class="profile-input editable" value="..." disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Employee ID</label>
+                        <input type="text" id="accEmpId" class="profile-input locked" value="..." disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="text" id="accEmail" class="profile-input locked" value="..." disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" id="accUsername" class="profile-input locked" value="..." disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Qualification</label>
+                        <input type="text" id="accQual" class="profile-input editable" value="..." disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Birth</label>
+                        <input type="text" id="accDob" class="profile-input locked" value="..." disabled>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Official Address</label>
+                        <input type="text" id="accOffAddress" class="profile-input editable" value="..." disabled>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Personal Address</label>
+                        <input type="text" id="accPerAddress" class="profile-input editable" value="..." disabled>
+                    </div>
+                    <div class="form-group">
+                        <label>Emergency Contact</label>
+                        <input type="text" id="accEmerg" class="profile-input editable" value="..." disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <h3 style="font-size: 17px;">Security Settings</h3>
+            <div class="sec-row">
+                <div class="sec-info">
+                    <div class="small-circle blue-bg"><i class="fas fa-lock"></i></div>
+                    <div class="sec-text"><h4>Change Password</h4><p>Update your password regularly</p></div>
+                </div>
+                <button class="btn-sec" id="openPwModalBtn">Change</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closePwModalBtn">&times;</span>
+            <div class="modal-header"><h2>Update Password</h2></div>
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label>New Password</label>
+                <input type="password" id="newPw" style="width: 100%; margin-top: 5px;">
+            </div>
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" id="confirmPw" style="width: 100%; margin-top: 5px;">
+            </div>
+            <button class="confirm-btn" id="savePwBtn">Update Password</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { db } from "./firebasenew.js";
+        import { collection, query, where, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-firestore.js";
+        import { getAuth, onAuthStateChanged, signOut, updatePassword } from "https://www.gstatic.com/firebasejs/12.8.0/firebase-auth.js";
+
+        const auth = getAuth();
+        let currentUserDocId = null;
+        const debugBox = document.getElementById('debug-status');
+
+        function showDebug(msg, isError = false) {
+            console.log(msg);
+            debugBox.style.display = 'block';
+            debugBox.innerHTML = msg;
+            debugBox.style.color = isError ? '#721c24' : '#856404';
+            debugBox.style.backgroundColor = isError ? '#f8d7da' : '#fff3cd';
+        }
+
+        async function loadAccountData(user) {
+            try {
+                showDebug(`🔎 Searching database for user: ${user.email}...`);
+
+                // ATTEMPT 1: Search by UID
+                let q = query(collection(db, "wardenAccounts"), where("uid", "==", user.uid));
+                let querySnapshot = await getDocs(q);
+
+                // ATTEMPT 2: Search by Email (Fallback)
+                if (querySnapshot.empty) {
+                    showDebug(`UID match failed. Trying Email match...`);
+                    q = query(collection(db, "wardenAccounts"), where("email", "==", user.email));
+                    querySnapshot = await getDocs(q);
+                }
+
+                if (!querySnapshot.empty) {
+                    showDebug(` Profile Found! Loading data...`, false);
+                    setTimeout(() => { debugBox.style.display = 'none'; }, 2000); // Hide success msg
+
+                    const docSnapshot = querySnapshot.docs[0];
+                    currentUserDocId = docSnapshot.id;
+                    const data = docSnapshot.data();
+
+                    // --- Populate Header & Sidebar ---
+                    if (data.fullName) {
+                        document.getElementById('display-name').innerText = data.fullName;
+                        document.getElementById('accFullName').value = data.fullName;
+                    } else {
+                        document.getElementById('display-name').innerText = "Warden";
+                    }
+
+                    // --- PROFILE IMAGE LOGIC ---
+                    if (data.profileImage) {
+                        document.getElementById('mainProfileImg').src = data.profileImage;
+                        document.getElementById('sidebarProfileImg').src = data.profileImage;
+                    }
+
+                    if (data.empId) document.getElementById('display-empId').innerText = data.empId;
+                    if (data.hostelName) document.getElementById('display-hostel').innerText = data.hostelName;
+
+                    // --- Populate Form Fields ---
+                    document.getElementById('accEmpId').value = data.empId || "";
+                    document.getElementById('accEmail').value = data.email || user.email;
+                    document.getElementById('accUsername').value = data.username || "";
+                    document.getElementById('accQual').value = data.qualifications || "";
+                    document.getElementById('accOffAddress').value = data.officialAddress || "";
+                    document.getElementById('accPerAddress').value = data.personalAddress || "";
+                    document.getElementById('accEmerg').value = data.emergencyContact || "";
+                    document.getElementById('accDob').value = data.dob || "";
+
+                } else {
+                    showDebug(` CRITICAL: No profile found in 'wardenAccounts'. <br>Checked UID: ${user.uid}<br>Checked Email: ${user.email}`, true);
+                }
+            } catch (error) {
+                showDebug(` Error loading profile: ${error.message}`, true);
+            }
+        }
+
+        // --- Interaction Logic ---
+        const editBtn = document.getElementById('editBtn');
+        const btnText = document.getElementById('btnText');
+        const editableInputs = document.querySelectorAll('.profile-input.editable');
+
+        editBtn.addEventListener('click', async () => {
+            const isEditing = !editableInputs[0].disabled;
+
+            if (!isEditing) {
+                editableInputs.forEach(input => {
+                    input.disabled = false;
+                    input.classList.add('editing');
+                });
+                btnText.innerText = "Save Changes";
+                editBtn.style.backgroundColor = "#2563eb"; 
+            } else {
+                if (!currentUserDocId) return alert("Cannot update: Profile not loaded.");
+                editBtn.disabled = true;
+                btnText.innerText = "Saving...";
+
+                try {
+                    const wardenRef = doc(db, "wardenAccounts", currentUserDocId);
+                    const updatedData = {
+                        fullName: document.getElementById('accFullName').value,
+                        qualifications: document.getElementById('accQual').value,
+                        officialAddress: document.getElementById('accOffAddress').value,
+                        personalAddress: document.getElementById('accPerAddress').value,
+                        emergencyContact: document.getElementById('accEmerg').value
+                    };
+
+                    await updateDoc(wardenRef, updatedData);
+                    document.getElementById('display-name').innerText = updatedData.fullName;
+                    alert("Profile updated successfully!");
+                } catch (error) {
+                    alert(" Update failed: " + error.message);
+                } finally {
+                    editableInputs.forEach(input => {
+                        input.disabled = true;
+                        input.classList.remove('editing');
+                    });
+                    btnText.innerText = "Edit Profile";
+                    editBtn.style.backgroundColor = "#12b48d";
+                    editBtn.disabled = false;
+                }
+            }
+        });
+
+        // --- Password Modal Logic ---
+        const pwModal = document.getElementById('passwordModal');
+        document.getElementById('openPwModalBtn').onclick = () => pwModal.style.display = 'flex';
+        document.getElementById('closePwModalBtn').onclick = () => pwModal.style.display = 'none';
+        window.onclick = (e) => { if (e.target == pwModal) pwModal.style.display = 'none'; };
+
+        document.getElementById('savePwBtn').onclick = async () => {
+            const p1 = document.getElementById('newPw').value;
+            const p2 = document.getElementById('confirmPw').value;
+            if (p1 !== p2) return alert("Passwords do not match!");
+            try {
+                await updatePassword(auth.currentUser, p1);
+                alert(" Password updated!");
+                pwModal.style.display = 'none';
+            } catch (e) { alert("Error: " + e.message); }
+        };
+
+        // --- Auth Check ---
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                loadAccountData(user);
+            } else {
+                window.location.href = "login.html";
+            }
+        });
+        
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            signOut(auth).then(() => window.location.href = "login.html");
+        });
+
+    </script>
+</body>
+</html>

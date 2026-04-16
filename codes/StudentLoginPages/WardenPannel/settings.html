@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Smart Hostel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS resets and base styles */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body { background-color: #f4f7f6; display: flex; transition: background 0.3s; }
+        
+        /* Dark Mode Theme Support */
+        body.dark-mode { background-color: #0f172a; color: #f8fafc; }
+        body.dark-mode .card { background-color: #1e293b; border-color: #334155; color: white; }
+        body.dark-mode .card-header h3 { color: #f8fafc; }
+        body.dark-mode .setting-row { background-color: #334155; border-color: #475569; }
+        body.dark-mode .info h4 { color: #f1f5f9; }
+        body.dark-mode .header-left h1 { color: white; }
+        body.dark-mode .custom-select { background-color: #1e293b; color: white; border-color: #475569; }
+
+        /* SIDEBAR STYLING */
+        .sidebar {
+            width: 260px; background-color: #101c2c; color: white;
+            height: 100vh; position: fixed; display: flex; flex-direction: column; padding: 20px 0;
+        }
+        .brand { padding: 0 25px 30px; display: flex; align-items: center; gap: 15px; }
+        .brand img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #12b48d; }
+        .brand h3 { font-size: 18px; margin: 0; }
+        .brand p { font-size: 12px; color: #8892b0; margin: 0; }
+        .nav-links { list-style: none; flex-grow: 1; }
+        .nav-links li { padding: 5px 20px; }
+        .nav-links a {
+            color: #a8b2d1; text-decoration: none; display: flex;
+            align-items: center; gap: 15px; padding: 12px 15px; border-radius: 10px; transition: 0.3s;
+        }
+        .nav-links li.active a, .nav-links a:hover { background-color: #12b48d; color: white; }
+        .logout-container { padding: 20px; border-top: 1px solid #1d2d44; }
+        .logout-link { color: #a8b2d1; text-decoration: none; display: flex; align-items: center; gap: 15px; }
+
+        /* MAIN CONTENT AREA */
+        .main-content { margin-left: 260px; width: calc(100% - 260px); padding: 40px; }
+        .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .header-left h1 { font-size: 28px; color: #1e293b; }
+        .header-left p { color: #64748b; margin-top: 5px; }
+
+        .btn-save {
+            background-color: #12b48d; color: white; border: none; padding: 12px 25px;
+            border-radius: 10px; font-weight: 600; cursor: pointer; display: flex;
+            align-items: center; gap: 10px; transition: 0.3s;
+        }
+        .btn-save:hover { background-color: #0f9d7a; transform: translateY(-2px); }
+
+        /* SETTINGS GRID */
+        .settings-grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 30px; align-items: start; }
+        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); border: 1px solid #eef2f1; }
+        .card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 25px; }
+        .card-header i { color: #12b48d; font-size: 20px; }
+        .card-header h3 { font-size: 18px; color: #1e293b; }
+
+        /* Rows & Toggles */
+        .setting-row { display: flex; justify-content: space-between; align-items: center; padding: 15px; background-color: #f8fafc; border-radius: 12px; margin-bottom: 12px; border: 1px solid #f1f5f9; }
+        .info h4 { font-size: 15px; color: #1e293b; margin: 0; }
+        .info p { font-size: 12px; color: #64748b; margin: 4px 0 0; }
+
+        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #cbd5e1; transition: .4s; border-radius: 24px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: #12b48d; }
+        input:checked + .slider:before { transform: translateX(20px); }
+
+        /* Inputs */
+        .input-group { margin-bottom: 20px; }
+        .input-group label { display: block; font-size: 14px; font-weight: 600; color: #475569; margin-bottom: 8px; }
+        .custom-select { width: 100%; padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px; background-color: white; color: #333; font-size: 14px; outline: none; }
+
+        /* DATA MANAGEMENT BUTTONS */
+        .data-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .data-btn { height: 130px; border: none; border-radius: 15px; color: white; font-weight: 700; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; cursor: pointer; transition: 0.3s; }
+        .data-btn i { font-size: 28px; }
+        .export-btn { background-color: #12b48d; }
+        .sync-btn { background-color: #5a6673; }
+        .clear-btn { background-color: #f15555; }
+        .data-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+        @media (max-width: 1024px) { .settings-grid-container, .data-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="brand">
+            <img src="images/warden-photo.jpg" alt="Warden">
+            <div class="brand-text"><h3>Warden Panel</h3><p>Smart Hostel</p></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="wardenmain.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+            <li><a href="view_student.html"><i class="fas fa-users"></i> View Student</a></li>
+            <li><a href="attendance.html"><i class="fas fa-clipboard-check"></i> Attendance</a></li>
+            <li><a href="room_allocation.html"><i class="fas fa-door-open"></i> Room Allocation</a></li>
+            <li><a href="account.html"><i class="fas fa-user"></i> Account</a></li>
+            <li class="active"><a href="settings.html"><i class="fas fa-cog"></i> Setting</a></li>
+        </ul>
+        <div class="logout-container"><a href="#" class="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+    </div>
+
+    <div class="main-content">
+        <header class="page-header">
+            <div class="header-left">
+                <h1>Settings</h1>
+                <p>Manage your preferences and configurations</p>
+            </div>
+            <button class="btn-save" onclick="saveSystemSettings()"><i class="far fa-save"></i> Save Changes</button>
+        </header>
+
+        <div class="settings-grid-container">
+            <div class="card">
+                <div class="card-header"><i class="far fa-bell"></i><h3>Notification Preferences</h3></div>
+                
+                <div class="setting-row">
+                    <div class="info"><h4>Email Notifications</h4><p>Receive updates via email</p></div>
+                    <label class="switch"><input type="checkbox" id="check-email" checked><span class="slider"></span></label>
+                </div>
+
+                <div class="setting-row">
+                    <div class="info"><h4>SMS Notifications</h4><p>Receive alerts via SMS</p></div>
+                    <label class="switch"><input type="checkbox" id="check-sms"><span class="slider"></span></label>
+                </div>
+
+                <div class="setting-row">
+                    <div class="info"><h4>Late Return Alerts</h4><p>Get notified of late returns</p></div>
+                    <label class="switch"><input type="checkbox" id="check-late" checked><span class="slider"></span></label>
+                </div>
+
+                <div class="setting-row">
+                    <div class="info"><h4>Attendance Reports</h4><p>Daily attendance summaries</p></div>
+                    <label class="switch"><input type="checkbox" id="check-reports" checked><span class="slider"></span></label>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header"><i class="fas fa-cog"></i><h3>System Customization</h3></div>
+                
+                <div class="input-group">
+                    <label>Theme Preference</label>
+                    <select class="custom-select" id="theme-mode" onchange="applyThemePreview()">
+                        <option value="light">Light Mode</option>
+                        <option value="dark">Dark Mode</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Language</label>
+                    <select class="custom-select" id="lang-pref">
+                        <option value="en">English (US)</option>
+                        <option value="si">Sinhala</option>
+                        <option value="ta">Tamil</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label>Default Timezone</label>
+                    <select class="custom-select">
+                        <option>(GMT+05:30) Sri Lanka/India Standard Time</option>
+                    </select>
+                </div>
+
+                <div class="setting-row" style="background: transparent; border: 1px dashed #cbd5e1; margin-top: 25px;">
+                    <div class="info"><h4>Auto-Approve Returns</h4><p>Approve returns before 8:00 PM automatically</p></div>
+                    <label class="switch"><input type="checkbox" id="check-auto-approve"><span class="slider"></span></label>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header"><i class="fas fa-database"></i><h3>Data Management</h3></div>
+            <div class="data-grid">
+                <button class="data-btn export-btn" onclick="exportData()">
+                    <i class="fas fa-download"></i> Export All Data
+                </button>
+                <button class="data-btn sync-btn" onclick="syncDatabase()">
+                    <i class="fas fa-sync-alt"></i> Sync Database
+                </button>
+                <button class="data-btn clear-btn" onclick="clearSystemCache()">
+                    <i class="fas fa-trash-alt"></i> Clear Cache
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // BACKEND LOGIC 1: Apply saved theme on page load
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('hostel_theme');
+            if(savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+                document.getElementById('theme-mode').value = 'dark';
+            }
+        };
+
+        // BACKEND LOGIC 2: Real-time Theme Preview
+        function applyThemePreview() {
+            const mode = document.getElementById('theme-mode').value;
+            if(mode === 'dark') {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        }
+
+        // BACKEND LOGIC 3: Save all settings to "Database" (LocalStorage)
+        function saveSystemSettings() {
+            const settings = {
+                email: document.getElementById('check-email').checked,
+                sms: document.getElementById('check-sms').checked,
+                late: document.getElementById('check-late').checked,
+                reports: document.getElementById('check-reports').checked,
+                autoApprove: document.getElementById('check-auto-approve').checked,
+                theme: document.getElementById('theme-mode').value,
+                lang: document.getElementById('lang-pref').value
+            };
+
+            // Simulation of API Call
+            const saveBtn = document.querySelector('.btn-save');
+            saveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+            setTimeout(() => {
+                localStorage.setItem('hostel_theme', settings.theme);
+                localStorage.setItem('hostel_settings', JSON.stringify(settings));
+                
+                saveBtn.innerHTML = '<i class="fas fa-check"></i> Saved Successfully';
+                saveBtn.style.backgroundColor = '#2563eb';
+
+                setTimeout(() => {
+                    saveBtn.innerHTML = '<i class="far fa-save"></i> Save Changes';
+                    saveBtn.style.backgroundColor = '#12b48d';
+                    alert("System configurations have been updated!");
+                }, 1500);
+            }, 1000);
+        }
+
+        // DATA MANAGEMENT FUNCTIONS
+        function exportData() {
+            alert("Generating CSV and PDF reports for all student data...");
+            // In real backend: window.location.href = '/api/export-data';
+        }
+
+        function syncDatabase() {
+            const syncBtn = document.querySelector('.sync-btn');
+            syncBtn.innerHTML = '<i class="fas fa-sync-alt fa-spin"></i> Syncing...';
+            setTimeout(() => {
+                syncBtn.innerHTML = '<i class="fas fa-sync-alt"></i> Sync Database';
+                alert("Cloud database is now synchronized with local records.");
+            }, 2000);
+        }
+
+        function clearSystemCache() {
+            if(confirm("Are you sure? This will clear temporary local files and session data.")) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+        
+    </script>
+</body>
+</html>

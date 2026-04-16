@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Warden Registration - University of Ruhuna</title>
+  <link rel="stylesheet" href="wardenreg.css" />
+</head>
+
+<body>
+  <main class="page">
+    <div class="card">
+      <div class="card-top">
+        <div class="avatar">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+            <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#2b6cb0" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path d="M20 21v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1" stroke="#2b6cb0" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <h1>Warden Registration</h1>
+        <p class="subtitle">University of Ruhuna - Sthyapala Girls Hostel</p>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress">
+        <div class="step-item">
+          <div class="step-num active" data-step="1">1</div>
+          <div class="step-label">Personal</div>
+        </div>
+        <div class="progress-line"></div>
+        <div class="step-item">
+          <div class="step-num" data-step="2">2</div>
+          <div class="step-label">User</div>
+        </div>
+        <div class="progress-line"></div>
+        <div class="step-item">
+          <div class="step-num" data-step="3">3</div>
+          <div class="step-label">Confirm</div>
+        </div>
+      </div>
+
+      <!-- Step 1: Personal Details -->
+      <section id="step-1" class="panel active">
+        <h2 class="section-title">Personal Details</h2>
+
+        <!-- Profile Image Upload -->
+        <div class="profile-upload">
+          <label class="field">
+            <span>Profile Picture (Optional)</span>
+            <input id="profileImage" type="file" accept="image/*" />
+          </label>
+          <div id="previewWrap" style="display: none; margin-top: 15px; text-align: center;">
+            <img id="previewImg" src="" alt="Profile Preview"
+              style="max-width: 150px; max-height: 150px; border-radius: 50%; border: 3px solid #2b6cb0; object-fit: cover;" />
+            <p style="font-size: 12px; color: #718096; margin-top: 8px;">Preview</p>
+          </div>
+        </div>
+
+        <label class="field">
+          <span>Full Name *</span>
+          <input id="fullName" type="text" placeholder="Enter your full name" required />
+        </label>
+
+        <label class="field">
+          <span>Employee ID *</span>
+          <input id="empId" type="text" placeholder="Employee ID" required />
+        </label>
+
+        <label class="field">
+          <span>Date of Birth</span>
+          <input id="dob" type="date" />
+        </label>
+
+        <label class="field">
+          <span>Official Address *</span>
+          <input id="officialAddress" type="text" placeholder="Official Address" required />
+        </label>
+
+        <label class="field">
+          <span>Personal Address *</span>
+          <input id="personalAddress" type="text" placeholder="Personal Address" required />
+        </label>
+
+        <label class="field">
+          <span>Qualifications *</span>
+          <input id="qualifications" type="text" placeholder="Your qualifications" required />
+        </label>
+
+        <label class="field">
+          <span>Emergency Contact Number *</span>
+          <input id="emergencyContact" type="tel" placeholder="+94 71 234 5678" required />
+        </label>
+
+        <div class="actions">
+          <button id="toStep2" class="btn primary">Next →</button>
+        </div>
+      </section>
+
+      <!-- Step 2: User Credentials -->
+      <section id="step-2" class="panel">
+        <h2 class="section-title">User Account Details</h2>
+
+        <!-- Static Hostel Name (Read-only) -->
+        <label class="field">
+          <span>Hostel Name</span>
+          <input id="hostelName" type="text" value="Sthapathya Girls Hostel" readonly
+            style="background: #f7fafc; cursor: not-allowed;" />
+        </label>
+
+        <label class="field">
+          <span>Username *</span>
+          <input id="username" type="text" placeholder="Choose a username" required />
+        </label>
+
+        <label class="field">
+          <span>Password *</span>
+          <input id="password" type="password" placeholder="Enter a strong password" required />
+        </label>
+
+        <label class="field">
+          <span>Confirm Password *</span>
+          <input id="confirmPassword" type="password" placeholder="Re-enter password" required />
+        </label>
+
+        <div class="actions">
+          <button id="backTo1" class="btn ghost">← Back</button>
+          <button id="toStep3" class="btn primary">Next →</button>
+        </div>
+      </section>
+
+      <!-- Step 3: Confirmation -->
+      <section id="step-3" class="panel">
+        <h2 class="section-title">Confirm Your Details</h2>
+
+        <!-- Profile Picture Preview in Confirmation -->
+        <div id="confirmProfileWrap" style="text-align: center; margin-bottom: 20px; display: none;">
+          <img id="confirmProfileImg" src="" alt="Profile"
+            style="width: 120px; height: 120px; border-radius: 50%; border: 3px solid #2b6cb0; object-fit: cover;" />
+          <p style="font-size: 12px; color: #718096; margin-top: 8px;">Your Profile Picture</p>
+        </div>
+
+        <div class="confirm-grid">
+          <div><strong>Full Name:</strong>
+            <div id="cFullName"></div>
+          </div>
+          <div><strong>Employee ID:</strong>
+            <div id="cEmpId"></div>
+          </div>
+          <div><strong>Date of Birth:</strong>
+            <div id="cDob"></div>
+          </div>
+          <div><strong>Official Address:</strong>
+            <div id="cOfficialAddress"></div>
+          </div>
+          <div><strong>Personal Address:</strong>
+            <div id="cPersonalAddress"></div>
+          </div>
+          <div><strong>Qualifications:</strong>
+            <div id="cQualifications"></div>
+          </div>
+          <div><strong>Emergency Contact:</strong>
+            <div id="cEmergencyContact"></div>
+          </div>
+          <div><strong>Hostel Name:</strong>
+            <div id="cHostelName"></div>
+          </div>
+          <div><strong>Username:</strong>
+            <div id="cUsername"></div>
+          </div>
+        </div>
+
+        <div id="status" class="status" role="status" aria-live="polite"></div>
+
+        <div class="actions">
+          <button id="backTo2" class="btn ghost">← Back</button>
+          <button id="finishBtn" class="btn primary">✓ Finish & Submit</button>
+        </div>
+
+        <div style="margin-top: 20px; text-align: center;">
+          <button id="gotoLogin" class="btn secondary">Already have an account? Login</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Load JavaScript at the end -->
+  <script type="module" src="wardenreg.js"></script>
+</body>
+
+</html>
