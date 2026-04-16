@@ -1,0 +1,30 @@
+/* ===== Role Selection Screen ===== */
+
+.role-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.role-buttons .btn {
+  justify-content: center;
+}
+
+/* Icons inside role buttons (optional) */
+.role-btn-icon {
+  font-size: 18px;
+}
+
+/* Small hover effect difference for role buttons */
+.role-buttons .btn:hover {
+  transform: translateY(-2px);
+}
+
+
+
+/* Responsive spacing */
+@media (max-width: 480px) {
+  .role-buttons {
+    gap: 12px;
+  }
+}

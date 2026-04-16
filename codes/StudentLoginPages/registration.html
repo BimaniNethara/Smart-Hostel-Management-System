@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="registration.css">
+</head>
+
+<body>
+    <main class="page">
+
+        <div class="card">
+            <!-- HEADER -->
+            <div class="card-top">
+                <div class="avatar">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z" stroke="#2b6cb0" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M20 21v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1" stroke="#2b6cb0" stroke-width="1.5"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h1>Student Registration</h1>
+                <p class="subtitle">University of Ruhuna - Sthyapala Girls Hostel</p>
+            </div>
+
+            <!-- PROGRESS -->
+            <div class="progress">
+
+                <div class="step active">
+                    <div>1</div><span>Personal</span>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                    <div>2</div><span>Academic</span>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                    <div>3</div><span>Hostel</span>
+                </div>
+                <div class="line"></div>
+                <div class="step">
+                    <div>4</div><span>Confirm</span>
+                </div>
+
+            </div>
+
+            <form id="studentForm">
+
+                <!-- STEP 1 -->
+                <div class="form-step active">
+
+                    <h2>Personal Details</h2>
+
+                    <div class="profile-upload">
+                        <label class="field">
+                            <span>Profile Picture</span>
+                            <input id="profilePic" type="file" accept="image/*">
+                        </label>
+
+                        <div id="previewWrap" style="display:none;">
+                            <img id="profilePreview">
+                            <p>Preview</p>
+                        </div>
+                    </div>
+
+                    <input id="fname" placeholder="First Name" required>
+                    <input id="lname" placeholder="Last Name" required>
+                    <input id="SID" type="text" placeholder="Student ID" required>
+                    <input type="email" id="email" placeholder="Email" required>
+
+                    <input type="date" id="dob" required>
+                    <input type="password" id="password" placeholder="Password" required>
+                    <input id="contact" placeholder="Contact Number" required>
+                    <input id="emergency" placeholder="Emergency Number" required>
+                    <input id="address" placeholder="Address" required>
+
+                    <select id="gender" required>
+                        <option value="">Gender</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+
+                    <div class="actions">
+                        <button type="button" class="next-btn">Next →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="form-step">
+                    <h2>Academic Details</h2>
+
+                    <select id="faculty" required>
+                        <option value="">Faculty</option>
+                        <option>Faculty of Humanities and Social Science</option>
+                        <option>Faculty of Science</option>
+                        <option>Faculty of Fisheries and Marine Science</option>
+                        <option>Faculty of Management and Finance</option>
+                    </select>
+
+                    <input id="department" placeholder="Department" required>
+                    <input id="academic_year" placeholder="Academic Year" required>
+
+                    <div class="actions">
+                        <button type="button" class="prev-btn">← Back</button>
+                        <button type="button" class="next-btn">Next →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="form-step">
+                    <h2>Hostel Details</h2>
+
+                    <input id="hostel_name" value="Smart Hostel" readonly>
+                    <input id="floor" placeholder="Floor Number" required>
+
+                    <div class="actions">
+                        <button type="button" class="prev-btn">← Back</button>
+                        <button type="button" class="next-btn">Next →</button>
+                    </div>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="form-step">
+                    <h2>Confirmation</h2>
+
+                    <input id="reg_date" readonly>
+                    <input id="exp_date" readonly>
+
+                    <div class="actions">
+                        <button type="button" class="prev-btn">← Back</button>
+                        <button type="submit">Submit ✓</button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </main>
+
+    <script type="module" src="registration.js"></script>
+</body>
+
+</html>
