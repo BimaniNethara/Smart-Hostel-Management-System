@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Room Information - Smart Hostel</title>
+    <link rel="stylesheet" href="Roominfo.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+    <div class="avatar">
+        <img id="profileImage" 
+             src="default-avatar.png" 
+             alt="Profile Picture"
+             style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+    </div>
+    <div class="sidebar-title">
+        <h2>Student Panel</h2>
+        <p>Smart Hostel</p>
+    </div>
+</div>
+
+        <nav class="sidebar-nav">
+            <a href="MyDashboard.html" class="nav-item" id="nav-dashboard">
+                <span class="nav-icon">☰</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="MyAttendence1.html" class="nav-item" id="nav-attendance">
+                <span class="nav-icon">📋</span>
+                <span>Attendance</span>
+            </a>
+            <a href="RoomInfo.html" class="nav-item active" id="nav-room">
+                <span class="nav-icon">ℹ️</span>
+                <span>Room Information</span>
+            </a>
+            <a href="MyStudentProfile.html" class="nav-item" id="nav-setting">
+                <span class="nav-icon">⚙️</span>
+                <span>Student Profile</span>
+            </a>
+        </nav>
+
+        <a href="#" class="logout" id="logout-btn">
+            <span class="nav-icon">↪</span>
+            <span>Logout</span>
+        </a>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header class="page-header">
+            <h1>Student Room Information</h1>
+            <p>View all your student information</p>
+        </header>
+
+        <!-- Room Details Card -->
+        <div class="room-details-card">
+            <div class="card-header">
+                <h2>Room Details</h2>
+                <div class="status-badge" id="room-status">Active</div>
+            </div>
+
+            <div class="details-grid">
+                <!-- Room Number -->
+                <div class="detail-item">
+                    <label>Room Number</label>
+                    <p class="detail-value red-text" id="room-number">001 - B</p>
+                </div>
+
+                
+
+                <!-- Floor -->
+                <div class="detail-item">
+                    <label>Floor</label>
+                    <p class="detail-value yellow-text" id="room-floor">2nd Floor</p>
+                </div>
+
+                
+
+                <!-- Room Type -->
+                <div class="detail-item">
+                    <label>Room Type</label>
+                    <p class="detail-value green-text" id="room-type">Double Sharing</p>
+                </div>
+
+                <!-- Occupancy >
+                <div class="detail-item">
+                    <label>Occupancy</label>
+                    <p class="detail-value orange-text" id="room-occupancy">2/2 student</p>
+                </div>/-->
+            </div>
+        </div>
+        
+
+        <!-- Room Facilities Card -->
+        <div class="facilities-card">
+            <h2>Room Facilities</h2>
+            
+            <div class="facilities-grid" id="facilities-grid">
+                <!-- Facilities will be loaded here dynamically -->
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="RoomInfo.js"></script>
+</body>
+</html>
