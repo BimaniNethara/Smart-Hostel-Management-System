@@ -23,7 +23,7 @@
                     </svg>
                 </div>
                 <h1>Student Registration</h1>
-                <p class="subtitle">University of Ruhuna - Sthyapala Girls Hostel</p>
+                <p class="subtitle">University of Ruhuna - Sathyapala Girls Hostel</p>
             </div>
 
             <!-- PROGRESS -->
@@ -49,7 +49,7 @@
 
             <form id="studentForm">
 
-                <!-- STEP 1 -->
+                <!-- step 1 -->
                 <div class="form-step active">
 
                     <h2>Personal Details</h2>
@@ -65,18 +65,28 @@
                             <p>Preview</p>
                         </div>
                     </div>
-
+                    <label>First Name</label>
                     <input id="fname" placeholder="First Name" required>
+                    <label>Last Name</label>
                     <input id="lname" placeholder="Last Name" required>
+                    <label>Student ID</label>
                     <input id="SID" type="text" placeholder="Student ID" required>
+                    <label>Email</label>
                     <input type="email" id="email" placeholder="Email" required>
-
+                    <label>Date of Birth</label>
                     <input type="date" id="dob" required>
+                    <label>Password</label>
                     <input type="password" id="password" placeholder="Password" required>
+                    <label>Contact number </label>
                     <input id="contact" placeholder="Contact Number" required>
+                    <label>Emergency Phone Number</label>
                     <input id="emergency" placeholder="Emergency Number" required>
+                    <label>Address</label>
                     <input id="address" placeholder="Address" required>
+                    <label>City</label>
+                    <input id=city" type="text" placeholder="City" required>
 
+                    <label>Gender</label>
                     <select id="gender" required>
                         <option value="">Gender</option>
                         <option>Male</option>
@@ -92,6 +102,7 @@
                 <div class="form-step">
                     <h2>Academic Details</h2>
 
+                    <label>Faculty</label>
                     <select id="faculty" required>
                         <option value="">Faculty</option>
                         <option>Faculty of Humanities and Social Science</option>
@@ -100,9 +111,12 @@
                         <option>Faculty of Management and Finance</option>
                     </select>
 
+                    <label>Department</label>
                     <input id="department" placeholder="Department" required>
+                    <label>Acedemic Year</label>
                     <input id="academic_year" placeholder="Academic Year" required>
 
+                    
                     <div class="actions">
                         <button type="button" class="prev-btn">← Back</button>
                         <button type="button" class="next-btn">Next →</button>
@@ -111,10 +125,11 @@
 
                 <!-- STEP 3 -->
                 <div class="form-step">
+                    <
                     <h2>Hostel Details</h2>
 
-                    <input id="hostel_name" value="Smart Hostel" readonly>
-                    <input id="floor" placeholder="Floor Number" required>
+                    <input id="hostel_name" value="Sathyapala Girls Hostel" readonly>
+                    <!--<input id="floor" placeholder="Floor Number" required>-->
 
                     <div class="actions">
                         <button type="button" class="prev-btn">← Back</button>
@@ -138,6 +153,13 @@
             </form>
         </div>
     </main>
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+    <script>
+        emailjs.init("OpJDrbG65XTaTWlEz"); // only this, remove window.emailjs stuff
+        window.emailjs = emailjs;
+    </script>
 
     <script type="module" src="registration.js"></script>
 </body>
